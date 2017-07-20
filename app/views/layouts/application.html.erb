@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Railback</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.css">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+<body>
+<nav class="navbar navbar-toggleable-md navbar-default bg-default">
+
+  <a class="navbar-brand" href="#index"><img src="/logo.jpg" width="40" height="40" class="d-inline-block align-top" alt="">
+railback</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="navbar-nav">
+      <div class="nav-item">
+      <% if user_signed_in?%>
+      <i class="icon-home"></i>
+      <%= link_to "Home",root_path,class: "nav-link"%>
+      </div>
+      <div class="nav-item">
+      <i class="icon-book"></i>
+        <a class="nav-link" href="#">Courses</a>
+      </div>
+      <div class="nav-item">
+      <i class="icon-circle"></i>
+        <a class="nav-link" href="#">About Us</a>
+      </div>
+      <div class="nav-item">
+      	<i class="icon-signout"></i>
+      	<%= link_to "Sign out", destroy_user_session_path, :method => :delete ,class: "nav-link"%>
+      	<% else%>
+      	<i class="icon-signin"></i>
+      	<%= link_to "Sign in", new_session_path(resource_name),class: "nav-link"%>
+<% end %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<%= yield %>
+
+</body>
+</html>
